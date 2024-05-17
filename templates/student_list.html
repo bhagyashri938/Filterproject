@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student List</title>
+</head>
+<body>
+    <h1>Student List</h1>
+
+    <form method="GET">
+        <input type="text" name="name" placeholder="Search by name" value="{{ request.GET.name }}">
+        <input type="text" name="marks" placeholder="Search by marks" value="{{ request.GET.marks }}">
+        <input type="text" name="age" placeholder="Search by age" value="{{ request.GET.age }}">
+        <input type="text" name="Date_Of_Birth" placeholder="Search by Date_Of_Birth" value="{{ request.GET.Date_Of_Birh }}">
+        <br><br>
+        
+        <label for='age'>Age:</label>
+        <input type="number"id="age"name="age"placeholder="Search by Age">
+        <br><br>
+        <label for="marks">Minimum Marks:</label>
+        <input type="number"id="marks"name="marks"placeholder="Search by Marks">
+        <br><br>
+        <button type="submit">Apply Filters</button><br><br>
+    </form>
+    <a href="{% url 'export_csv'%}" class="btn btn-primary">Export CSV</a>
+
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Marks</th>
+            <th>Date_Of_Birth</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>{{ student.age }}</td>
+            <td>{{ student.marks }}</td>
+            <td>{{student.date_of_birth}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
